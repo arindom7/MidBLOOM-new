@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MidBLOOM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8e8;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #8dc63c;
+            padding: 15px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .navbar .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar .nav-links li {
+            display: inline;
+        }
+
+        .navbar .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar .nav-links a:hover {
+            background-color: #7bbc3d;
+        }
+
+        .navbar .login-button {
+            background-color: #17ae00;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-right: 30px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar .login-button:hover {
+            background-color: #1f5a01;
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 100px 20px;
+            background-color: #e0ebe0;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        .hero img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        .hero .buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .hero .buttons button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .hero .buttons .learn-more {
+            background-color: #8dc63c;
+            color: #fff;
+        }
+
+        .hero .buttons .learn-more:hover {
+            background-color: #7bbc3d;
+        }
+
+        .hero .buttons .contact-us {
+            background-color: #275001;
+            color: #fff;
+        }
+
+        .hero .buttons .contact-us:hover {
+            background-color: #926e00;
+        }
+
+        .blog-section {
+            padding: 60px 20px;
+            background-color: #fff;
+        }
+
+        .blog-section h2 {
+            font-size: 2rem;
+            color: #333;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .blog-posts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .blog-post {
+            background-color: #e0ebe0;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 300px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-10px);
+        }
+
+        .blog-post img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .blog-post .content {
+            padding: 20px;
+        }
+
+        .blog-post h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .blog-post p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .blog-post .read-more {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #8dc63c;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .blog-post .read-more:hover {
+            background-color: #7bbc3d;
+        }
+
+        .services-section {
+            padding: 60px 20px;
+            background-color: #e0ebe0;
+            text-align: center;
+        }
+
+        .services-section h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 40px;
+        }
+
+        .services-slider {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .services-slider .slider-content {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .services-slider .service {
+            flex: 0 0 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .services-slider .service img {
+            width: 100%;
+            max-width: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+        .services-slider .service h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .services-slider .service p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .services-slider .navigation {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .services-slider .navigation button {
+            background-color: #8dc63c;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .services-slider .navigation button:hover {
+            background-color: #7bbc3d;
+        }
+
+        .about-us-section {
+            padding: 60px 20px;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .about-us-section h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 40px;
+        }
+
+        .about-us-section .team {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .about-us-section .team-member {
+            background-color: #e0ebe0;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 200px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .about-us-section .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .about-us-section .team-member img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .about-us-section .team-member .info {
+            padding: 20px;
+        }
+
+        .about-us-section .team-member h3 {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .about-us-section .team-member p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .learn-more-section {
+            padding: 60px 20px;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .learn-more-section h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 40px;
+        }
+
+        .learn-more-section p {
+            font-size: 1rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-us-section {
+            padding: 60px 20px;
+            background-color: #e0ebe0;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contact-us-section h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 40px;
+        }
+
+        .contact-us-section .contact-form {
+            max-width: 600px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-us-section .contact-form input,
+        .contact-us-section .contact-form textarea {
+            padding: 15px;
+            border: 1px solid #a3b18a;
+            border-radius: 5px;
+            font-size: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .contact-us-section .contact-form button {
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: #8dc63c;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-us-section .contact-form button:hover {
+            background-color: #7bbc3d;
+        }
+
+        .chat-container {
+            display: none;
+            width: 100%;
+            max-width: 400px;
+            background-color: #e0ebe0;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 65vh;
+            position: fixed;
+            right: 20px;
+            bottom: 80px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.27s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .chat-container.visible {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .chat-header {
+            background-color: #8dc63c;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h1 {
+            margin: 0;
+            font-size: 1.7rem;
+        }
+
+        .chat-messages {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .message {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .message-content {
+            padding: 10px;
+            border-radius: 5px;
+            max-width: 70%;
+        }
+
+        .user-message {
+            flex-direction: row-reverse;
+        }
+
+        .user-message .message-content {
+            background-color: #4a90e2;
+            margin-right: 10px;
+            color: #fff;
+        }
+
+        .bot-message .message-content {
+            background-color: #d4e6c8;
+            margin-left: 10px;
+        }
+
+        .profile-image {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .chat-input-container {
+            display: flex;
+            padding: 15px;
+            background-color: #e0ebe0;
+        }
+
+        #user-input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #a3b18a;
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: #fff;
+            color: #333;
+            outline: none;
+        }
+
+        #send-button {
+            padding: 10px 20px;
+            background-color: #8dc63c;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        #send-button:hover {
+            background-color: #7bbc3d;
+        }
+
+        #send-button:disabled {
+            background-color: #6b9b3b;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 480px) {
+            .chat-container {
+                height: 80vh;
+                border-radius: 0;
+                width: 100%;
+                max-width: 100%;
+                right: 0;
+                bottom: 0;
+            }
+        }
+
+        /* Scrollbar Styles */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #e0ebe0;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #a3b18a;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8dc63c;
+        }
+
+        #chat-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #8dc63c;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #close-button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .weather-container {
+            display: none;
+            width: 100%;
+            max-width: 400px;
+            background-color: #e0ebe0;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 65vh;
+            position: fixed;
+            left: 20px;
+            bottom: 80px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.27s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .weather-container.visible {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .weather-header {
+            background-color: #8dc63c;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .weather-header h1 {
+            margin: 0;
+            font-size: 1.7rem;
+        }
+
+        .weather-content {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        #weather-toggle {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #8dc63c;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #weather-close-button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        #forecast {
+            margin-top: 20px;
+        }
+
+        #forecast h2 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        #forecast div {
+            border: 1px solid #a3b18a;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        #forecast p {
+            font-size: 1rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">AgroLogo</div>
+        <ul class="nav-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#blog-section">Blog</a></li>
+            <li><a href="#services-section">Services</a></li>
+            <li><a href="#about-us-section">About Us</a></li>
+            <li><a href="#learn-more-section">Learn More</a></li>
+            <li><a href="#contact-us-section">Contact Us</a></li>
+        </ul>
+        <button class="login-button">Login</button>
+    </nav>
+    <div id="hero" class="hero">
+        <h1>MidBLOOM</h1>
+        <p>Your Slogan Here</p>
+        <img src="https://via.placeholder.com/600x400" alt="Agricultural Image">
+        <div class="buttons">
+            <button class="learn-more">Learn More</button>
+            <button class="contact-us">Contact Us</button>
+        </div>
+    </div>
+    <div id="blog-section" class="blog-section">
+        <h2>Latest Blog Posts</h2>
+        <div class="blog-posts">
+            <div class="blog-post">
+                <img src="https://via.placeholder.com/300x200" alt="Blog Post 1">
+                <div class="content">
+                    <h3>Blog Post 1</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.</p>
+                    <button class="read-more">Read More</button>
+                </div>
+            </div>
+            <div class="blog-post">
+                <img src="https://via.placeholder.com/300x200" alt="Blog Post 2">
+                <div class="content">
+                    <h3>Blog Post 2</h3>
+                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</p>
+                    <button class="read-more">Read More</button>
+                </div>
+            </div>
+            <div class="blog-post">
+                <img src="https://via.placeholder.com/300x200" alt="Blog Post 3">
+                <div class="content">
+                    <h3>Blog Post 3</h3>
+                    <p>Vestibulum commodo volutpat a, convallis ac, laoreet enim. Phasellus fermentum in, dolor.</p>
+                    <button class="read-more">Read More</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="services-section" class="services-section">
+        <h2>Our Specialized Services</h2>
+        <p>At MidBLOOM, each logo below represents one of our six specialized services, carefully designed to drive your business forward. Use the left and right arrows to navigate through our interactive slider, and explore each service in detail.</p>
+        <div class="services-slider">
+            <div class="slider-content">
+                <div class="service">
+                    <img src="https://via.placeholder.com/150" alt="Service 1">
+                    <h3>Service 1</h3>
+                    <p>Detailed description and definition of Service 1, outlining the purpose, key features, and benefits.</p>
+                </div>
+                <div class="service">
+                    <img src="https://via.placeholder.com/150" alt="Service 2">
+                    <h3>Service 2</h3>
+                    <p>Detailed description and definition of Service 2, outlining the purpose, key features, and benefits.</p>
+                </div>
+                <div class="service">
+                    <img src="https://via.placeholder.com/150" alt="Service 3">
+                    <h3>Service 3</h3>
+                    <p>Detailed description and definition of Service 3, outlining the purpose, key features, and benefits.</p>
+                </div>
+                <div class="service">
+                    <img src="https://via.placeholder.com/150" alt="Service 4">
+                    <h3>Service 4</h3>
+                    <p>Detailed description and definition of Service 4, outlining the purpose, key features, and benefits.</p>
+                </div>
+                <div class="service">
+                    <img src="https://via.placeholder.com/150" alt="Service 5">
+                    <h3>Service 5</h3>
+                    <p>Detailed description and definition of Service 5, outlining the purpose, key features, and benefits.</p>
+                </div>
+                <div class="service">
+                    <img src="https://via.placeholder.com/150" alt="Service 6">
+                    <h3>Service 6</h3>
+                    <p>Detailed description and definition of Service 6, outlining the purpose, key features, and benefits.</p>
+                </div>
+            </div>
+            <div class="navigation">
+                <button id="prev-button">&#10094;</button>
+                <button id="next-button">&#10095;</button>
+            </div>
+        </div>
+    </div>
+    <div id="about-us-section" class="about-us-section">
+        <h2>About Us</h2>
+        <div class="team">
+            <div class="team-member">
+                <img src="https://via.placeholder.com/200x200" alt="Team Member 1">
+                <div class="info">
+                    <h3>John Doe</h3>
+                    <p>Founder & CEO</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <img src="https://via.placeholder.com/200x200" alt="Team Member 2">
+                <div class="info">
+                    <h3>Jane Smith</h3>
+                    <p>Chief Operating Officer</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <img src="https://via.placeholder.com/200x200" alt="Team Member 3">
+                <div class="info">
+                    <h3>Emily Johnson</h3>
+                    <p>Marketing Manager</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <img src="https://via.placeholder.com/200x200" alt="Team Member 4">
+                <div class="info">
+                    <h3>Michael Brown</h3>
+                    <p>Lead Developer</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <img src="https://via.placeholder.com/200x200" alt="Team Member 5">
+                <div class="info">
+                    <h3>Sarah Wilson</h3>
+                    <p>Customer Support Specialist</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="learn-more-section" class="learn-more-section">
+        <h2>Learn More About Us</h2>
+        <p>Welcome to the "Learn More" section! Here, you can find detailed information about our mission, vision, and the values that drive our company. Explore how we strive to make a difference in the agricultural industry through innovation and dedication.</p>
+    </div>
+    <div id="contact-us-section" class="contact-us-section">
+        <h2>Contact Us</h2>
+        <div class="contact-form">
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+            <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required>
+            <textarea id="address" name="address" placeholder="Your Address" required></textarea>
+            <button type="submit">Submit</button>
+        </div>
+    </div>
+    <button id="chat-toggle">💬</button>
+    <div class="chat-container" id="chat-container">
+        <div class="chat-header">
+            <h1>Agro-Chatbot</h1>
+            <button id="close-button">❎</button>
+        </div>
+        <div class="chat-messages" id="chat-messages"></div>
+        <div class="chat-input-container">
+            <input type="text" id="user-input" placeholder="Type your message...">
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+    <button id="weather-toggle">🌦️</button>
+    <div class="weather-container" id="weather-container">
+        <div class="weather-header">
+            <h1>Weather Forecast</h1>
+            <button id="weather-close-button">❎</button>
+        </div>
+        <div class="weather-content" id="weather-content">
+            <input type="text" id="cityInput" placeholder="Enter city name">
+            <button id="getForecastBtn">Get Forecast</button>
+            <div id="forecast"></div>
+        </div>
+    </div>
+    <script>
+        const API_KEY = 'AIzaSyDGgJ4b2U962FXqQSDQtOXuR91HK1n8qDg';
+        const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent';
+
+        const chatMessages = document.getElementById('chat-messages');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+
+        async function generateResponse(prompt) {
+            const response = await fetch(`${API_URL}?key=${API_KEY}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    contents: [
+                        {
+                            parts: [
+                                {
+                                    text: prompt
+                                }
+                            ]
+                        }
+                    ]
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to generate response');
+            }
+
+            const data = await response.json();
+            return data.candidates[0].content.parts[0].text;
+        }
+
+        function cleanMarkdown(text) {
+            return text
+                .replace(/#{1,6}\s?/g, '')
+                .replace(/\*\*/g, '')
+                .replace(/\n{3,}/g, '\n\n')
+                .trim();
+        }
+
+        function addMessage(message, isUser) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            messageElement.classList.add(isUser ? 'user-message' : 'bot-message');
+
+            const profileImage = document.createElement('img');
+            profileImage.classList.add('profile-image');
+            profileImage.src = isUser ? 'user.jpg' : 'bot.jpg';
+            profileImage.alt = isUser ? 'User' : 'Bot';
+
+            const messageContent = document.createElement('div');
+            messageContent.classList.add('message-content');
+            messageContent.textContent = message;
+
+            messageElement.appendChild(profileImage);
+            messageElement.appendChild(messageContent);
+
+            chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        async function handleUserInput() {
+            const userMessage = userInput.value.trim();
+            if (userMessage) {
+                addMessage(userMessage, true);
+                userInput.value = '';
+                sendButton.disabled = true;
+                userInput.disabled = true;
+
+                try {
+                    const botMessage = await generateResponse(userMessage);
+                    addMessage(cleanMarkdown(botMessage), false);
+                } catch (error) {
+                    console.error('Error:', error);
+                    addMessage('Sorry, I encountered an error. Please try again.', false);
+                } finally {
+                    sendButton.disabled = false;
+                    userInput.disabled = false;
+                    userInput.focus();
+                }
+            }
+        }
+
+        sendButton.addEventListener('click', handleUserInput);
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                handleUserInput();
+            }
+        });
+
+        document.getElementById('chat-toggle').addEventListener('click', function() {
+            const chatContainer = document.getElementById('chat-container');
+            chatContainer.classList.add('visible');
+        });
+
+        document.getElementById('close-button').addEventListener('click', function() {
+            const chatContainer = document.getElementById('chat-container');
+            chatContainer.classList.remove('visible');
+        });
+
+        const sliderContent = document.querySelector('.slider-content');
+        const services = document.querySelectorAll('.service');
+        let currentIndex = 0;
+
+        function showService(index) {
+            const translateX = -index * 100;
+            sliderContent.style.transform = `translateX(${translateX}%)`;
+        }
+
+        document.getElementById('prev-button').addEventListener('click', function() {
+            currentIndex = (currentIndex - 1 + services.length) % services.length;
+            showService(currentIndex);
+        });
+
+        document.getElementById('next-button').addEventListener('click', function() {
+            currentIndex = (currentIndex + 1) % services.length;
+            showService(currentIndex);
+        });
+
+        // Add smooth scrolling and visibility handling for sections
+        const sections = ['hero', 'blog-section', 'services-section', 'about-us-section', 'learn-more-section', 'contact-us-section'];
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        navLinks.forEach((link, index) => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetSection = document.getElementById(sections[index]);
+                window.scrollTo({
+                    top: targetSection.offsetTop - 60,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Handle "Learn More" button click
+        document.querySelector('.hero .buttons .learn-more').addEventListener('click', (e) => {
+            e.preventDefault();
+            const learnMoreSection = document.getElementById('learn-more-section');
+            window.scrollTo({
+                top: learnMoreSection.offsetTop - 60,
+                behavior: 'smooth'
+            });
+        });
+
+        // Handle "Contact Us" button click
+        document.querySelector('.hero .buttons .contact-us').addEventListener('click', (e) => {
+            e.preventDefault();
+            const contactUsSection = document.getElementById('contact-us-section');
+            window.scrollTo({
+                top: contactUsSection.offsetTop - 60,
+                behavior: 'smooth'
+            });
+        });
+
+        document.getElementById('weather-toggle').addEventListener('click', function() {
+            const weatherContainer = document.getElementById('weather-container');
+            weatherContainer.classList.add('visible');
+        });
+
+        document.getElementById('weather-close-button').addEventListener('click', function() {
+            const weatherContainer = document.getElementById('weather-container');
+            weatherContainer.classList.remove('visible');
+        });
+
+        async function getCoordinates(city) {
+            const apiKey = "1b820a20703e4d3e8e2ef6af1067cd08";
+            const url = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(city)}&key=${apiKey}`;
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error("Failed to fetch coordinates");
+                const data = await response.json();
+
+                if (data.results && data.results.length > 0) {
+                    const { lat, lng } = data.results[0].geometry;
+                    return { lat, lng };
+                } else {
+                    throw new Error(`Could not find coordinates for ${city}`);
+                }
+            } catch (error) {
+                console.error(error.message);
+                return null;
+            }
+        }
+
+        async function getWeatherForecast(city) {
+            const coordinates = await getCoordinates(city);
+            if (!coordinates) return { error: "Invalid city name. Please try again." };
+
+            const { lat, lng } = coordinates;
+            const baseUrl = "https://api.open-meteo.com/v1/forecast";
+            const dailyParams = "temperature_2m_max,temperature_2m_min,precipitation_sum,rain_sum,showers_sum,sunrise,sunset";
+            const url = `${baseUrl}?latitude=${lat}&longitude=${lng}&daily=${dailyParams}&timezone=auto`;
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error("Failed to fetch weather data");
+                return await response.json();
+            } catch (error) {
+                console.error(error.message);
+                return { error: "Failed to fetch weather data." };
+            }
+        }
+
+        function displayForecast(data) {
+            const forecastDiv = document.getElementById("forecast");
+            forecastDiv.innerHTML = "";
+
+            if (data.error) {
+                forecastDiv.textContent = data.error;
+                return;
+            }
+
+            const { daily } = data;
+            const forecastHTML = daily.time.map((date, i) => {
+                const sunriseTime = daily.sunrise[i]?.split("T")[1]?.slice(0, 5) || "N/A";
+                const sunsetTime = daily.sunset[i]?.split("T")[1]?.slice(0, 5) || "N/A";
+
+                return `
+                    <div>
+                        <h3>Date: ${date}</h3>
+                        <p>Min Temperature: ${daily.temperature_2m_min[i] ?? "N/A"}°C</p>
+                        <p>Max Temperature: ${daily.temperature_2m_max[i] ?? "N/A"}°C</p>
+                        <p>Precipitation: ${daily.precipitation_sum[i] ?? "N/A"} mm</p>
+                        <p>Rain: ${daily.rain_sum[i] ?? "N/A"} mm</p>
+                        <p>Showers: ${daily.showers_sum[i] ?? "N/A"} mm</p>
+                        <p>Sunrise: ${sunriseTime}</p>
+                        <p>Sunset: ${sunsetTime}</p>
+                    </div>
+                `;
+            }).join("");
+
+            forecastDiv.innerHTML = `<h2>🌦️ Agricultural Weather Forecast:</h2>${forecastHTML}`;
+        }
+
+        document.getElementById("getForecastBtn").addEventListener("click", async () => {
+            const city = document.getElementById("cityInput").value;
+            if (!city) {
+                alert("No valid city name was provided.");
+                return;
+            }
+
+            const forecastData = await getWeatherForecast(city);
+            displayForecast(forecastData);
+        });
+    </script>
+</body>
+</html>
