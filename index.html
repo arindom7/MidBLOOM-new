@@ -137,7 +137,7 @@
             max-height: 520px;
             object-fit: fill;
             position: absolute;
-            bottom: 5px;
+            bottom: 0px;
         }
 
         .blog-section {
@@ -694,7 +694,7 @@
             <button class="learn-more">Learn More</button>
             <button class="contact-us">Contact Us</button>
         </div>
-        <img src="Bacground abstract (0-00-04-23).png" alt="Agricultural Image">
+        <img src="photos/abstract.jpg" alt="Agricultural Image">
     </div>
     <div id="blog-section" class="blog-section">
         <h2>Latest Blog Posts</h2>
@@ -894,7 +894,7 @@
 
             const profileImage = document.createElement('img');
             profileImage.classList.add('profile-image');
-            profileImage.src = isUser ? 'user.jpg' : 'chatbot.jpg';
+            profileImage.src = isUser ? 'photos/user.jpg' : 'photos/chatbot.jpg';
             profileImage.alt = isUser ? 'User' : 'Bot';
 
             const messageContent = document.createElement('div');
