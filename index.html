@@ -76,16 +76,19 @@
         }
 
         .hero {
+            background-image: url('photos/abstract.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            padding: 100px 20px;
+            padding: 230px 20px;
             background-color: #e0ebe0;
             margin-top: 60px;
             position: relative;
         }
-
         .hero h1 {
             font-size: 3rem;
             color: #333;
@@ -129,15 +132,6 @@
 
         .hero .buttons .contact-us:hover {
             background-color: #926e00;
-        }
-
-        .hero img {
-            width: 100%;
-            height: auto;
-            max-height: 520px;
-            object-fit: fill;
-            position: absolute;
-            bottom: 0px;
         }
 
         .blog-section {
@@ -232,59 +226,92 @@
 
         .services-slider .slider-content {
             display: flex;
-            transition: transform 0.5s ease-in-out;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
-        .services-slider .service {
-            flex: 0 0 100%;
+        .services-row {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .service {
+            flex: 1 1 calc(50% - 20px);
             padding: 20px;
             box-sizing: border-box;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
 
-        .services-slider .service img {
+        .service:hover {
+            transform: translateY(-10px);
+        }
+
+        .service img {
             width: 100%;
             max-width: 150px;
             border-radius: 50%;
             margin-bottom: 20px;
         }
 
-        .services-slider .service h3 {
+        .service h3 {
             font-size: 1.5rem;
             color: #333;
             margin-bottom: 10px;
         }
 
-        .services-slider .service p {
+        .service p {
             font-size: 1rem;
             color: #555;
             margin-bottom: 20px;
         }
 
-        .services-slider .navigation {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
-        }
-
-        .services-slider .navigation button {
+        .service .explore-button {
+            display: inline-block;
+            padding: 10px 20px;
             background-color: #8dc63c;
             color: #fff;
             border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            border-radius: 5px;
+            font-size: 1rem;
             cursor: pointer;
+            text-decoration: none;
             transition: background-color 0.3s ease;
         }
 
-        .services-slider .navigation button:hover {
+        .service .explore-button:hover {
             background-color: #7bbc3d;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .services-row {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .service {
+                flex: 1 1 100%;
+            }
+
+            .services-slider .navigation button {
+                width: 30px;
+                height: 30px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .services-slider .navigation button {
+                width: 25px;
+                height: 25px;
+                font-size: 1rem;
+            }
         }
 
         .about-us-section {
@@ -360,10 +387,10 @@
         }
 
         .contact-us-section {
-            padding: 60px 20px;
+            padding: 0px 10px;
             background-color: #e0ebe0;
             text-align: center;
-            height: 100vh;
+            height: 80vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -472,7 +499,7 @@
         }
 
         .user-message .message-content {
-            background-color: #4a90e2;
+            background-color: #82d154;
             margin-right: 10px;
             color: #fff;
         }
@@ -673,6 +700,16 @@
             color: #555;
         }
     </style>
+    <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+(function(){
+  emailjs.init({
+    publicKey: "TyV5QornTrOIg6Buw",
+  });
+})();
+</script>
 </head>
 <body>
     <nav class="navbar">
@@ -694,7 +731,6 @@
             <button class="learn-more">Learn More</button>
             <button class="contact-us">Contact Us</button>
         </div>
-        <img src="photos/abstract.jpg" alt="Agricultural Image">
     </div>
     <div id="blog-section" class="blog-section">
         <h2>Latest Blog Posts</h2>
@@ -727,38 +763,50 @@
     </div>
     <div id="services-section" class="services-section">
         <h2>Our Specialized Services</h2>
-        <p>At MidBLOOM, each logo below represents one of our six specialized services, carefully designed to drive your business forward. Use the left and right arrows to navigate through our interactive slider, and explore each service in detail.</p>
+        <p>At MidBLOOM, each logo below represents one of our six specialized services, carefully designed to drive our business forward.</p>
         <div class="services-slider">
             <div class="slider-content">
-                <div class="service">
-                    <img src="https://via.placeholder.com/150" alt="Service 1">
-                    <h3>Service 1</h3>
-                    <p>Detailed description and definition of Service 1, outlining the purpose, key features, and benefits.</p>
+                <div class="services-row">
+                    <div class="service">
+                        <img src="photos/drone.jpg" alt="Service 1">
+                        <h3>FIELD VISION</h3>
+                        <p>Detailed description and definition of Service 1, outlining the purpose, key features, and benefits.</p>
+                        <a href="https://example.com/service1" class="explore-button">Explore</a>
+                    </div>
+                    <div class="service">
+                        <img src="photos/eco monitor.jpg" alt="Service 2">
+                        <h3>ECO MONITOR</h3>
+                        <p>Detailed description and definition of Service 2, outlining the purpose, key features, and benefits.</p>
+                        <a href="https://example.com/service2" class="explore-button">Explore</a>
+                    </div>
                 </div>
-                <div class="service">
-                    <img src="https://via.placeholder.com/150" alt="Service 2">
-                    <h3>Service 2</h3>
-                    <p>Detailed description and definition of Service 2, outlining the purpose, key features, and benefits.</p>
+                <div class="services-row">
+                    <div class="service">
+                        <img src="photos/drone.jpg" alt="Service 3">
+                        <h3>AGRI-YOJNA</h3>
+                        <p>Detailed description and definition of Service 3, outlining the purpose, key features, and benefits.</p>
+                        <a href="https://example.com/service3" class="explore-button">Explore</a>
+                    </div>
+                    <div class="service">
+                        <img src="photos/florafix.jpg" alt="Service 4">
+                        <h3>FLORA-FIX</h3>
+                        <p>Detailed description and definition of Service 4, outlining the purpose, key features, and benefits.</p>
+                        <a href="https://example.com/service4" class="explore-button">Explore</a>
+                    </div>
                 </div>
-                <div class="service">
-                    <img src="https://via.placeholder.com/150" alt="Service 3">
-                    <h3>Service 3</h3>
-                    <p>Detailed description and definition of Service 3, outlining the purpose, key features, and benefits.</p>
-                </div>
-                <div class="service">
-                    <img src="https://via.placeholder.com/150" alt="Service 4">
-                    <h3>Service 4</h3>
-                    <p>Detailed description and definition of Service 4, outlining the purpose, key features, and benefits.</p>
-                </div>
-                <div class="service">
-                    <img src="https://via.placeholder.com/150" alt="Service 5">
-                    <h3>Service 5</h3>
-                    <p>Detailed description and definition of Service 5, outlining the purpose, key features, and benefits.</p>
-                </div>
-                <div class="service">
-                    <img src="https://via.placeholder.com/150" alt="Service 6">
-                    <h3>Service 6</h3>
-                    <p>Detailed description and definition of Service 6, outlining the purpose, key features, and benefits.</p>
+                <div class="services-row">
+                    <div class="service">
+                        <img src="photos/harvest hub.jpg" alt="Service 5">
+                        <h3>HARVEST-HUB</h3>
+                        <p>Detailed description and definition of Service 5, outlining the purpose, key features, and benefits.</p>
+                        <a href="https://example.com/service5" class="explore-button">Explore</a>
+                    </div>
+                    <div class="service">
+                        <img src="photos/agricircle.jpg" alt="Service 6">
+                        <h3>AGRI-CIRCLE</h3>
+                        <p>Detailed description and definition of Service 6, outlining the purpose, key features, and benefits.</p>
+                        <a href="https://example.com/service6" class="explore-button">Explore</a>
+                    </div>
                 </div>
             </div>
             <div class="navigation">
@@ -773,36 +821,36 @@
             <div class="team-member">
                 <img src="https://via.placeholder.com/200x200" alt="Team Member 1">
                 <div class="info">
-                    <h3>John Doe</h3>
-                    <p>Founder & CEO</p>
+                    <h3>AKANKHYA BORKOTOKY</h3>
+                    <p>Team Leader</p>
                 </div>
             </div>
             <div class="team-member">
-                <img src="https://via.placeholder.com/200x200" alt="Team Member 2">
+                <img src="photos/arindom.jpg" alt="Team Member 2">
                 <div class="info">
-                    <h3>Jane Smith</h3>
-                    <p>Chief Operating Officer</p>
+                    <h3>ARINDOM MAHANTA</h3>
+                    <p>Web Developer</p>
                 </div>
             </div>
             <div class="team-member">
-                <img src="https://via.placeholder.com/200x200" alt="Team Member 3">
+                <img src="photos/arnold.jpg" alt="Team Member 3">
                 <div class="info">
-                    <h3>Emily Johnson</h3>
-                    <p>Marketing Manager</p>
+                    <h3>ARNOLD SAIKIA</h3>
+                    <p>UI&UX Designer</p>
                 </div>
             </div>
             <div class="team-member">
-                <img src="https://via.placeholder.com/200x200" alt="Team Member 4">
+                <img src="photos/jyotishmita.jpg" alt="Team Member 4">
                 <div class="info">
-                    <h3>Michael Brown</h3>
-                    <p>Lead Developer</p>
+                    <h3>JYOTISHMITA BHUYAN</h3>
+                    <p>Developer</p>
                 </div>
             </div>
             <div class="team-member">
-                <img src="https://via.placeholder.com/200x200" alt="Team Member 5">
+                <img src="photos/neeraj.jpg" alt="Team Member 5">
                 <div class="info">
-                    <h3>Sarah Wilson</h3>
-                    <p>Customer Support Specialist</p>
+                    <h3>NEERAJ SHARMA</h3>
+                    <p>Presenter</p>
                 </div>
             </div>
         </div>
@@ -813,12 +861,13 @@
     </div>
     <div id="contact-us-section" class="contact-us-section">
         <h2>Contact Us</h2>
-        <div class="contact-form">
+        <form class="contact-form" id="contact-form">
             <input type="email" id="email" name="email" placeholder="Your Email" required>
             <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required>
             <textarea id="address" name="address" placeholder="Your Address" required></textarea>
+            <textarea id="query" name="query" placeholder="Your query" required></textarea>
             <button type="submit">Submit</button>
-        </div>
+        </form>
     </div>
     <button id="chat-toggle">💬</button>
     <div class="chat-container" id="chat-container">
@@ -955,17 +1004,23 @@
         function showService(index) {
             const translateX = -index * 100;
             sliderContent.style.transform = `translateX(${translateX}%)`;
+            console.log(`Showing service at index ${index}, translateX: ${translateX}%`);
         }
 
         document.getElementById('prev-button').addEventListener('click', function() {
             currentIndex = (currentIndex - 1 + services.length) % services.length;
+            console.log(`Previous button clicked. New index: ${currentIndex}`);
             showService(currentIndex);
         });
 
         document.getElementById('next-button').addEventListener('click', function() {
             currentIndex = (currentIndex + 1) % services.length;
+            console.log(`Next button clicked. New index: ${currentIndex}`);
             showService(currentIndex);
         });
+
+        // Initialize the slider to show the first service
+        showService(currentIndex);
 
         // Add smooth scrolling and visibility handling for sections
         const sections = ['hero', 'blog-section', 'services-section', 'about-us-section', 'learn-more-section', 'contact-us-section'];
@@ -1095,6 +1150,32 @@
 
             const forecastData = await getWeatherForecast(city);
             displayForecast(forecastData);
+        });
+
+        // EmailJS integration
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get form data
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const query = document.getElementById('query').value; 
+
+            // Send email using EmailJS
+            emailjs.send("service_05eodqp", "template_81nxyfl", {
+                email: email,
+                phone: phone,
+                address: address,
+                query: query
+            })
+            .then(function(response) {
+                console.log('Email sent successfully!', response);
+                alert('Email sent successfully!');
+            }, function(error) {
+                console.error('Failed to send email:', error);
+                alert('Failed to send email. Please try again.');
+            });
         });
     </script>
 </body>
