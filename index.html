@@ -29,9 +29,11 @@
         }
 
         .navbar .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #fff;
+            width: 55px; /* Adjust the size as needed */
+            height: 55px; /* Adjust the size as needed */
+            border-radius: 80%;
+            object-fit: cover;
+            margin-right: 10px; /* Adjust spacing if needed */
         }
 
         .navbar .nav-links {
@@ -89,6 +91,7 @@
             margin-top: 60px;
             position: relative;
         }
+
         .hero h1 {
             font-size: 3rem;
             color: #333;
@@ -713,7 +716,7 @@
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo">AgroLogo</div>
+        <img src="photos/agrologo.jpg" alt="AgroLogo" class="logo">
         <ul class="nav-links">
             <li><a href="#hero">Home</a></li>
             <li><a href="#blog-section">Blog</a></li>
@@ -777,7 +780,7 @@
                         <img src="photos/eco monitor.jpg" alt="Service 2">
                         <h3>ECO MONITOR</h3>
                         <p>Detailed description and definition of Service 2, outlining the purpose, key features, and benefits.</p>
-                        <a href="https://example.com/service2" class="explore-button">Explore</a>
+                        <a href="ecomonitor.html" class="explore-button">Explore</a>
                     </div>
                 </div>
                 <div class="services-row">
@@ -791,7 +794,7 @@
                         <img src="photos/florafix.jpg" alt="Service 4">
                         <h3>FLORA-FIX</h3>
                         <p>Detailed description and definition of Service 4, outlining the purpose, key features, and benefits.</p>
-                        <a href="https://example.com/service4" class="explore-button">Explore</a>
+                        <a href="florafix.html" class="explore-button">Explore</a>
                     </div>
                 </div>
                 <div class="services-row">
@@ -799,13 +802,13 @@
                         <img src="photos/harvest hub.jpg" alt="Service 5">
                         <h3>HARVEST-HUB</h3>
                         <p>Detailed description and definition of Service 5, outlining the purpose, key features, and benefits.</p>
-                        <a href="https://example.com/service5" class="explore-button">Explore</a>
+                        <a href="harvesthub.html" class="explore-button">Explore</a>
                     </div>
                     <div class="service">
                         <img src="photos/agricircle.jpg" alt="Service 6">
                         <h3>AGRI-CIRCLE</h3>
                         <p>Detailed description and definition of Service 6, outlining the purpose, key features, and benefits.</p>
-                        <a href="https://example.com/service6" class="explore-button">Explore</a>
+                        <a href="agricircle.html" class="explore-button">Explore</a>
                     </div>
                 </div>
             </div>
@@ -819,7 +822,7 @@
         <h2>About Us</h2>
         <div class="team">
             <div class="team-member">
-                <img src="https://via.placeholder.com/200x200" alt="Team Member 1">
+                <img src="photos/akankhya.jpg" alt="Team Member 1">
                 <div class="info">
                     <h3>AKANKHYA BORKOTOKY</h3>
                     <p>Team Leader</p>
@@ -1160,7 +1163,7 @@
             const email = document.getElementById('email').value;
             const phone = document.getElementById('phone').value;
             const address = document.getElementById('address').value;
-            const query = document.getElementById('query').value; 
+            const query = document.getElementById('query').value;
 
             // Send email using EmailJS
             emailjs.send("service_05eodqp", "template_81nxyfl", {
