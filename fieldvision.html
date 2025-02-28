@@ -1,1 +1,119 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriVision</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #a8e063 0%, #56ab2f 100%);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            color: #78b159;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        .component {
+            background: #78b159;
+            color: white;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: transform 0.3s, background-color 0.3s;
+            cursor: pointer;
+        }
+        .component:hover {
+            transform: translateY(-5px);
+            background-color: #6a9c5b;
+        }
+        .component img {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            margin-left: 20px;
+            transition: transform 0.3s;
+        }
+        .component img:hover {
+            transform: scale(1.1);
+        }
+        .component span {
+            font-size: 1.2rem;
+        }
+        .back-button {
+            margin-top: 20px;
+        }
+        .back-button a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #78b159;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .back-button a:hover {
+            background-color: #6a9c5b;
+            transform: translateY(-3px);
+        }
+    </style>
+    <script>
+        function showMessage(component) {
+            alert(component + " selected");
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Field Vision</h1>
+        <h2>Drone Components</h2>
+        <div class="component" onclick="showMessage('Arduino')">
+            <span>Arduino</span>
+            <img src="photos/arduino.jpg" alt="Arduino">
+        </div>
+        <div class="component" onclick="showMessage('LiPo Battery')">
+            <span>LiPo Battery</span>
+            <img src="photos/lipobattery.jpg" alt="LiPo Battery">
+        </div>
+        <div class="component" onclick="showMessage('Flight Controller')">
+            <span>Flight Controller</span>
+            <img src="photos/flightcontroler.jpg" alt="Flight Controller">
+        </div>
+        <div class="component" onclick="showMessage('Brushless Motor')">
+            <span>Brushless Motor</span>
+            <img src="photos/brushlessmotor.jpg" alt="Brushless Motor">
+        </div>
+        <div class="component" onclick="showMessage('ESCs')">
+            <span>ESCs</span>
+            <img src="photos/escs.jpg" alt="ESCs">
+        </div>
+        <div class="back-button">
+            <a href="javascript:history.back()">Back to Previous Page</a>
+        </div>
+    </div>
+</body>
+</html>

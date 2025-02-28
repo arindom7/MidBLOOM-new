@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriAlert & AgriCircle</title>
+    <style>
+        body {
+            background-color: rgb(215, 234, 194);
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            position: relative;
+        }
+        .circular-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 20px auto;
+        }
+        .circular-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        .back-button a, .redirect-button a {
+            text-decoration: none;
+            color: rgb(241, 241, 241);
+            background-color: #03752d;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        .redirect-button {
+            margin-top: 20px;
+        }
+        .container {
+            margin-top: 100px;
+        }
+        .join-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .join-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="back-button">
+        <a href="MidBLOOM.html" id="backButton">Back</a>
+    </div>
+    <h1>AgriAlert</h1>
+    <h2>(real-time price loader)</h2>
+    <div class="circular-image">
+        <img src="photos/agrialert.jpg" alt="AgriAlert Image">
+    </div>
+    <div class="redirect-button">
+        <a href="https://amiu.aau.ac.in/Home" id="redirectButton">Visit Website</a>
+    </div>
+
+    <div class="container">
+        <h1>Welcome to AgriCircle</h1>
+        <p>A community for farmers to connect and trade.</p>
+        <a href="https://chat.whatsapp.com/JSXsCkJeaOIEDN8giywrIB" class="join-btn">Join AgriCircle</a>
+    </div>
+
+    <script>
+        document.getElementById('backButton').addEventListener('click', function(event) {
+            alert('Redirecting to the original website...');
+        });
+
+        document.getElementById('redirectButton').addEventListener('click', function(event) {
+            alert('Redirecting to the example website...');
+        });
+    </script>
+</body>
+</html>
+

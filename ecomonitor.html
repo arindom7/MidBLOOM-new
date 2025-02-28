@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoMonitor - Agricultural Smart Irrigation</title>
+    <style>
+        :root {
+            --primary-color: #5a7826;
+            --secondary-color: #e0e8cf;
+            --tertiary-color: #27ae60;
+            --accent-color: #4CAF50;
+            --font-family: 'Arial Rounded MT Bold', sans-serif;
+            --transition-speed: 0.3s cubic-bezier(0.19,1,0.41,.98);
+        }
+
+        body {
+            font-family: var(--font-family);
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #76a04e 0%, #4CAF50 100%);
+            color: #333;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 2rem 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 2rem;
+            box-shadow: 0 0 3rem rgba(0, 0, 0, 0.15);
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header {
+            background: linear-gradient(180deg, var(--primary-color) 0%, var(--tertiary-color) 100%);
+            padding: 3rem 2rem;
+            margin: -5rem -2rem 3rem;
+            border-radius: 2.5rem;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .section-header h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        footer {
+            background: var(--accent-color);
+            padding: 2.5rem 2rem;
+            margin: 5rem -2rem 0;
+            border-radius: 2rem 2rem 0 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        footer p {
+            font-size: 1rem;
+            color: #e0f2f1;
+        }
+
+        .back-button {
+            margin-top: 1rem;
+        }
+
+        .back-button a {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: #fff;
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color var(--transition-speed), transform var(--transition-speed);
+        }
+
+        .back-button a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-0.25rem);
+        }
+
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 0 1rem;
+            margin: -1rem -1rem 2rem;
+            background: inherit;
+            border-radius: 2rem;
+        }
+
+        .component-card {
+            background: var(--secondary-color);
+            padding: 1rem;
+            border-radius: 1.5rem;
+            border: 2px solid rgba(153, 192, 97, 0.5);
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            position: relative;
+            transition: transform var(--transition-speed), border-radius var(--transition-speed);
+            cursor: pointer;
+        }
+
+        .component-card:hover {
+            transform: translateY(-0.5rem) scale(1.02);
+            border-radius: 1rem;
+            box-shadow: 0 0 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .component-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(-45deg, #8bc34a, #66bb6a);
+            opacity: 0;
+            transition: width var(--transition-speed), opacity var(--transition-speed);
+        }
+
+        .component-card:hover::before {
+            width: 100%;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .component-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.5rem 0.5rem 0;
+            border-bottom: 2px dashed #6c7a51;
+        }
+
+        .component-header h3 {
+            font-size: 1.5rem;
+            color: #27ae60;
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        .component-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            padding: 1rem 0.5rem 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .component-details {
+            flex: 2;
+            text-align: left;
+            margin-top: 0.5rem;
+        }
+
+        .component-details h4 {
+            color: #3498db;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .component-details p {
+            color: #666;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+
+        .component-image {
+            flex: 1;
+            max-width: 100%;
+        }
+
+        .component-image img {
+            width: 100%;
+            border-radius: 1rem;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+            transition: transform var(--transition-speed);
+        }
+
+        .component-image img:hover {
+            transform: scale(1.06);
+        }
+
+        .project-benefit {
+            background: var(--secondary-color);
+            border-left: 5px solid #4daf63;
+            padding: 1rem 1.5rem;
+            margin: 0.5rem 0;
+            border-radius: 1rem;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-benefit p {
+            font-weight: bold;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .era-bar {
+            width: 80%;
+            height: 0.5rem;
+            background: linear-gradient(90deg, #8bc34a 25%, #4caf50 60%, #28a745 100%);
+            border-radius: 0.5rem;
+            margin: 2rem auto 1rem;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.3) inset;
+        }
+
+        .circuit-section {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: var(--secondary-color);
+            border-radius: 1.5rem;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+
+        .circuit-section h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .circuit-section img {
+            max-width: 100%;
+            border-radius: 1rem;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .circuit-section .simulation-button {
+            margin-top: 1rem;
+        }
+
+        .circuit-section .simulation-button a {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-color);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color var(--transition-speed), transform var(--transition-speed);
+        }
+
+        .circuit-section .simulation-button a:hover {
+            background-color: var(--tertiary-color);
+            transform: translateY(-0.25rem);
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="section-header">
+            <h1 class="icon">🌾</h1>
+            <h1>EcoMonitor</h1>
+            <h2>Smart Irrigation for Agricultural Excellence</h2>
+            <h3>(ground system)</h3>
+        </div>
+
+        <div class="components-grid">
+            <div class="component-card">
+                <div class="component-header">
+                    <div class="icon">💧</div>
+                    <h3>Soil Moisture Sensor</h3>
+                </div>
+                <div class="component-content">
+                    <div class="component-details">
+                        <h4>Key Features:</h4>
+                        <p>Real-time soil moisture monitoring down to 5cm depth with capacitive sensing technology.</p>
+                        <h4>Agricultural Benefit:</h4>
+                        <p>Optimize water usage by 35% and prevent overwatering in drought-prone areas.</p>
+                    </div>
+                    <div class="component-image">
+                        <img src="photos/soilmoisturesensor.jpg" alt="Soil Moisture Sensor">
+                    </div>
+                </div>
+                <div class="project-benefit">
+                    <p>Reduces water costs and conserves groundwater</p>
+                </div>
+            </div>
+
+            <div class="component-card">
+                <div class="component-header">
+                    <div class="icon">🌡️</div>
+                    <h3>Temperature & Humidity Sensor</h3>
+                </div>
+                <div class="component-content">
+                    <div class="component-details">
+                        <h4>Key Features:</h4>
+                        <p>Accurate DHT22 sensor module with 0.5°C temperature resolution and ±2% humidity accuracy.</p>
+                        <h4>Agricultural Benefit:</h4>
+                        <p>Reduce crop stress by 28% through microclimate adjustment and frost alert notifications.</p>
+                    </div>
+                    <div class="component-image">
+                        <img src="photos/temperaturesensor.jpg" alt="Temperature & Humidity Sensor">
+                    </div>
+                </div>
+                <div class="project-benefit">
+                    <p>Improves crop yield and longevity</p>
+                </div>
+            </div>
+
+            <div class="component-card">
+                <div class="component-header">
+                    <div class="icon">📊</div>
+                    <h3>Display</h3>
+                </div>
+                <div class="component-content">
+                    <div class="component-details">
+                        <h4>Key Features:</h4>
+                        <p>2.4" TFT LCD with UV-resistance coating and anti-glare touchscreen input. Supports 240x320 resolution with 16-bit color depth and driver library compatibility for Arduino.</p>
+                        <h4>Agricultural Benefit:</h4>
+                        <p>Provides field technicians with real-time system diagnostics and irrigation performance metrics.</p>
+                    </div>
+                    <div class="component-image">
+                        <img src="photos/display.jpg" alt="Display">
+                    </div>
+                </div>
+                <div class="project-benefit">
+                    <p>Low failure rate and outdoor durability</p>
+                </div>
+            </div>
+
+            <div class="component-card">
+                <div class="component-header">
+                    <div class="icon">Roboto</div>
+                    <h3>Arduino</h3>
+                </div>
+                <div class="component-content">
+                    <div class="component-details">
+                        <h4>Key Features:</h4>
+                        <p>ATmega328P microcontroller with 14 digital I/O pins (6 PWM outputs), 6 analog inputs, 32KB Flash Memory, and USB/USART connectivity. Features brown-out protection and 5V/16MHz operating range.</p>
+                        <h4>Agricultural Benefit:</h4>
+                        <p>Highly reliable and cost-effective control system capable of coordinating up to 5 independent irrigation zones.</p>
+                    </div>
+                    <div class="component-image">
+                        <img src="photos/arduino.jpg" alt="Arduino">
+                    </div>
+                </div>
+                <div class="project-benefit">
+                    <p>Supports both cloud-based and offline operation</p>
+                </div>
+            </div>
+
+            <div class="component-card">
+                <div class="component-header">
+                    <div class="icon">⚡</div>
+                    <h3>5V Battery</h3>
+                </div>
+                <div class="component-content">
+                    <div class="component-details">
+                        <h4>Key Features:</h4>
+                        <p>3-cell rechargeable lithium-polymer battery with integrated BMS (Battery Management System) circuitry. Delivers 3000mAh capacity and supports trickle charging from either USB or solar panel sources.</p>
+                        <h4>Agricultural Benefit:</h4>
+                        <p>Reduces dependence on grid power and enables deployment in remote fields up to 1.2 miles from utility infrastructure.</p>
+                    </div>
+                    <div class="component-image">
+                        <img src="photos/battery.jpg" alt="5V Battery">
+                    </div>
+                </div>
+                <div class="project-benefit">
+                    <p>Operates continuously during power outages</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="era-bar"></div>
+
+        <div class="circuit-section">
+            <h2>Circuit Diagram</h2>
+            <img src="photos/circuit diagram.jpg" alt="Circuit Diagram">
+            <div class="simulation-button">
+                <a href="https://www.tinkercad.com/things/fTBpgzmHBa6-smart-irrigation-system">Go to Circuit Simulation</a>
+            </div>
+        </div>
+
+        <footer>
+            <h2>EcoMonitor Agricultural Solutions</h2>
+            <p>Connecting nature and technology since 2025</p>
+            <div class="back-button">
+                <a href="MidBLOOM.html">Back to Main Website</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

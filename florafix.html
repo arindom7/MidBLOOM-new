@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FloraFix - Online Plant Doctor 🌿</title>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #43cea2, #185a9d);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .container {
+            width: 60%;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+            color: black;
+            transition: all 0.3s ease;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        .container:hover {
+            transform: scale(1.02);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        button {
+            padding: 14px 28px;
+            margin: 10px;
+            border: none;
+            background: #28a745;
+            color: white;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background: #218838;
+            transform: scale(1.05);
+        }
+
+        .diagnosis-box {
+            background: #ffe6e6;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0px 4px 10px rgba(255, 0, 0, 0.2);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .back-button a {
+            text-decoration: none;
+            color: white;
+            background-color: #048611;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .back-button a:hover {
+            background-color: #1fb043;
+        }
+    </style>
+</head>
+<body>
+    <div class="back-button">
+        <a href="MidBLOOM.html">Back</a>
+    </div>
+    <div class="container">
+        <h2>🌿 FloraFix - Online Plant Doctor 🌱</h2>
+        <p id="question"></p>
+        <div id="answers">
+            <button onclick="nextQuestion('yes')">✅ Yes</button>
+            <button onclick="nextQuestion('no')">❌ No</button>
+        </div>
+        <div id="result" class="hidden">
+            <div class="diagnosis-box">
+                <h3 id="diagnosis"></h3>
+                <p id="remedy"></p>
+                <p><strong>• Expert Help:</strong> For further expert analysis, contact Hexabyte Team, which will link you with knowledgeable experts from AgrCircle for deeper insights and professional assistance.</p>
+                <p id="accuracy"></p>
+                <p><strong>Chosen Symptoms:</strong></p>
+                <ul id="symptoms"></ul>
+            </div>
+            <button onclick="restart()">🔄 Restart</button>
+        </div>
+    </div>
+
+    <script>
+        let questions = [
+            { q: "Does your plant have yellow leaves? 🍂", yes: 1, no: 2 },
+            { q: "Are the leaves dry and crispy? 🔥", yes: 3, no: 4 },
+            { q: "Are there brown spots on the leaves? 🟤", yes: 5, no: 6 },
+            { q: "Is the soil completely dry? 🌵", yes: 7, no: 8 },
+            { q: "Is there mold on the soil? 🍄", yes: 9, no: 10 },
+            { q: "Are the brown spots spreading quickly? ⚠", yes: 11, no: 12 },
+            { q: "Are there holes in the leaves? 🐛", yes: 13, no: 14 },
+            { q: "Are the leaves turning black? 🖤", yes: "Root Rot", no: "Healthy Plant" },
+            { q: "Are the leaves curling? 🌀", yes: "Nutrient Deficiency", no: "Overwatering" },
+            { q: "Is the plant wilting? 😞", yes: "Underwatering", no: "Sunburn" },
+            { q: "Do you see webbing on the plant? 🕸", yes: "Spider Mites", no: "Fungal Infection" }
+        ];
+
+        let index = 0;
+        let chosenSymptoms = [];
+
+        function loadQuestion() {
+            document.getElementById("question").innerText = questions[index].q;
+        }
+
+        function nextQuestion(answer) {
+            let next = questions[index][answer];
+            chosenSymptoms.push(`${questions[index].q} - ${answer === 'yes' ? 'Yes' : 'No'}`);
+            if (typeof next === "number") {
+                index = next;
+                loadQuestion();
+            } else {
+                showResult(next);
+            }
+        }
+
+        function showResult(issue) {
+            let remedies = {
+                "Underwatering": "💧 Your plant is not getting enough water. Ensure you water it consistently, but avoid overwatering. Check soil moisture regularly to maintain a balance.",
+                "Overwatering": "🚰 Your plant has received excessive water, leading to potential root rot. Reduce watering, ensure proper drainage, and allow the soil to dry between watering.",
+                "Fungal Infection": "🦠 Your plant may have a fungal infection. Trim affected leaves, improve air circulation, and apply an organic fungicide. Avoid wetting leaves when watering.",
+                "Nutrient Deficiency": "🌱 Your plant lacks essential nutrients. Apply a balanced fertilizer containing nitrogen, phosphorus, and potassium. Consider organic compost for long-term soil health.",
+                "Pest Infestation": "🐜 Your plant may have pests such as aphids or whiteflies. Inspect the undersides of leaves, wash them with soapy water, and use neem oil or insecticidal soap.",
+                "Sunburn": "☀ Your plant may be getting too much direct sunlight. Move it to an area with filtered light and ensure it receives the right amount of sun based on its species.",
+                "Spider Mites": "🕷 Your plant has spider mites. These tiny pests can damage leaves. Increase humidity, rinse the plant thoroughly, and apply neem oil regularly.",
+                "Root Rot": "⚠ Root rot occurs due to prolonged overwatering. Trim affected roots, repot in fresh, well-draining soil, and water only when the soil is dry to the touch.",
+                "Healthy Plant": "🎉 Your plant appears to be in good health! Maintain proper watering, lighting, and fertilization to keep it thriving. Monitor for any changes over time."
+            };
+
+            let accuracy = (chosenSymptoms.length / (chosenSymptoms.length + (questions.length - index - 1))) * 100;
+
+            document.getElementById("question").classList.add("hidden");
+            document.getElementById("answers").classList.add("hidden");
+            document.getElementById("result").classList.remove("hidden");
+            document.getElementById("diagnosis").innerText = "🌿 Diagnosis: " + issue;
+            document.getElementById("remedy").innerHTML = "<strong>🩺 Remedy:</strong> " + remedies[issue];
+            document.getElementById("accuracy").innerText = "🔍 Accuracy Rate: " + accuracy.toFixed(2) + "%";
+
+            let symptomsList = document.getElementById("symptoms");
+            symptomsList.innerHTML = "";
+            chosenSymptoms.forEach(symptom => {
+                let li = document.createElement("li");
+                li.innerText = symptom;
+                symptomsList.appendChild(li);
+            });
+        }
+
+        function restart() {
+            index = 0;
+            chosenSymptoms = [];
+            document.getElementById("question").classList.remove("hidden");
+            document.getElementById("answers").classList.remove("hidden");
+            document.getElementById("result").classList.add("hidden");
+            loadQuestion();
+        }
+
+        loadQuestion();
+    </script>
+</body>
+</html>

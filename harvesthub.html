@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harvest Hub - Connect with MidBloom</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #28a745;
+            color: white;
+            padding: 20px;
+            position: relative;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .back-button a {
+            text-decoration: none;
+            color: white;
+            background-color: #007bff;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .back-button a:hover {
+            background-color: #0056b3;
+        }
+
+        .hero {
+            margin: 50px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .form-section {
+            background-color: white;
+            padding: 20px;
+            width: 50%;
+            margin: 20px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        #message {
+            margin-top: 10px;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="back-button">
+            <a href="MidBLOOM.html">Back</a>
+        </div>
+        <h1>Welcome to Harvest Hub</h1>
+        <p>Connecting Entrepreneurs with MidBloom</p>
+    </header>
+
+    <section class="hero">
+        <h2>Grow Your Business with Us</h2>
+        <p>Join MidBloom and explore new opportunities in farming and trade.</p>
+        <button onclick="registerEntrepreneur()">Join Now</button>
+    </section>
+
+    <section class="form-section" id="register-form">
+        <h2>Register as an Entrepreneur</h2>
+        <form id="entrepreneurForm">
+            <input type="text" id="name" placeholder="Your Name" required><br>
+            <input type="email" id="email" placeholder="Your Email" required><br>
+            <input type="text" id="company" placeholder="Company Name" required><br>
+            <button type="submit">Register</button>
+        </form>
+        <p id="message"></p>
+    </section>
+
+    <script>
+        function registerEntrepreneur() {
+            document.getElementById("register-form").style.display = "block";
+        }
+
+        document.getElementById("entrepreneurForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let company = document.getElementById("company").value;
+
+            if (name && email && company) {
+                document.getElementById("message").innerText = "Thank you for registering!";
+                document.getElementById("entrepreneurForm").reset();
+            } else {
+                document.getElementById("message").innerText = "Please fill out all fields.";
+            }
+        });
+    </script>
+
+</body>
+</html>
